@@ -1,176 +1,172 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
-interface dataProps {
-  imageUrl: string;
+import Pagination from "../Shared/Pagination/Pagination";
+import "./ShopPage.scss";
+
+interface DataProps {
+  imageUrls: string[];
   title: string;
   description: string;
   price: number;
 }
+
+const dataFilled: DataProps[] = [
+  {
+    imageUrls: [
+      "HeartCandle1.png",
+      "HeartCandle2.png",
+      "SquareCircleAndZigzagCandle.png",
+    ],
+    title: "Card 1",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 1",
+    price: 10,
+  },
+  {
+    imageUrls: ["HeartCandle1.png", "HeartCandle2.png"],
+    title: "Card 2",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 2",
+    price: 20,
+  },
+  {
+    imageUrls: ["SquareCircleAndZigzagCandle.png"],
+    title: "Card 3",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 3",
+    price: 30,
+  },
+  {
+    imageUrls: ["SquareCircleCandle1.png", "SquareCircleCandle2.png"],
+    title: "Card 4",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 4",
+    price: 40,
+  },
+  {
+    imageUrls: ["SquareCircleCandle2.png", "SquareCircleCandle1.png"],
+    title: "Card 5",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 5",
+    price: 50,
+  },
+  {
+    imageUrls: ["SquareCircleCandle1.png", "SquareCircleCandle2.png"],
+    title: "Card 6",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 6",
+    price: 60,
+  },
+  {
+    imageUrls: ["HeartCandle1.png", "HeartCandle2.png"],
+    title: "Card 7",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 7",
+    price: 70,
+  },
+  {
+    imageUrls: ["HeartCandle1.png", "HeartCandle2.png"],
+    title: "Card 8",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 8",
+    price: 80,
+  },
+  {
+    imageUrls: ["SquareCircleAndZigzagCandle.png"],
+    title: "Card 9",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 9",
+    price: 90,
+  },
+  {
+    imageUrls: ["HeartCandle1.png", "HeartCandle2.png"],
+    title: "Card 10",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 10",
+    price: 100,
+  },
+  {
+    imageUrls: ["SquareCircleCandle2.png", "SquareCircleCandle1.png"],
+    title: "Card 11",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 11",
+    price: 110,
+  },
+  {
+    imageUrls: ["SquareCircleCandle1.png", "SquareCircleCandle2.png"],
+    title: "Card 12",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ullam. 12",
+    price: 120,
+  },
+];
+
+const dummyData: DataProps[] = [
+  {
+    imageUrls: [],
+    title: "Loading...",
+    description: "",
+    price: 0,
+  },
+  {
+    imageUrls: [],
+    title: "Loading...",
+    description: "",
+    price: 0,
+  },
+  {
+    imageUrls: [],
+    title: "Loading...",
+    description: "",
+    price: 0,
+  },
+  {
+    imageUrls: [],
+    title: "Loading...",
+    description: "",
+    price: 0,
+  },
+];
+
 const ShopPage = () => {
-  const [data, setData] = useState<dataProps[]>([
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-    {
-      imageUrl: "",
-      title: "",
-      description: "",
-      price: 0,
-    },
-  ]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState<DataProps[]>(dummyData);
   const [loading, setLoading] = useState(true);
+
+  const itemsPerPage = 4;
 
   useEffect(() => {
     setTimeout(() => {
-      setData([
-        {
-          imageUrl: "HeartCandle1.png",
-          title: "Card 1",
-          description: "Description 1",
-          price: 10,
-        },
-        {
-          imageUrl: "HeartCandle2.png",
-          title: "Card 2",
-          description: "Description 2",
-          price: 20,
-        },
-        {
-          imageUrl: "SquareCircleAndZigzagCandle.png",
-          title: "Card 3",
-          description: "Description 3",
-          price: 30,
-        },
-        {
-          imageUrl: "SquareCircleCandle1.png",
-          title: "Card 4",
-          description: "Description 4",
-          price: 40,
-        },
-        {
-          imageUrl: "SquareCircleCandle2.png",
-          title: "Card 5",
-          description: "Description 5",
-          price: 50,
-        },
-        {
-          imageUrl: "SquareCircleCandle2.png",
-          title: "Card 6",
-          description: "Description 6",
-          price: 60,
-        },
-        {
-          imageUrl: "HeartCandle1.png",
-          title: "Card 7",
-          description: "Description 7",
-          price: 70,
-        },
-        {
-          imageUrl: "HeartCandle2.png",
-          title: "Card 8",
-          description: "Description 8",
-          price: 80,
-        },
-        {
-          imageUrl: "SquareCircleAndZigzagCandle.png",
-          title: "Card 9",
-          description: "Description 9",
-          price: 90,
-        },
-        {
-          imageUrl: "HeartCandle1.png",
-          title: "Card 10",
-          description: "Description 10",
-          price: 100,
-        },
-        {
-          imageUrl: "SquareCircleCandle2.png",
-          title: "Card 11",
-          description: "Description 11",
-          price: 110,
-        },
-        {
-          imageUrl: "SquareCircleCandle1.png",
-          title: "Card 12",
-          description: "Description 12",
-          price: 120,
-        },
-      ]);
+      setData(dataFilled);
       setLoading(false);
-    }, 1000);
+    }, 500);
   }, []);
 
+  const handlePageChange = (page: number) => {
+    setLoading(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+      setLoading(false);
+    }, 500);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
+
   return (
-    <div className="container text-center">
-      <div className="row g-2">
-        {data.map((card, index) => (
-          <div key={index} className="col-md-3 col-sm-6 mb-4">
-            <Card {...card} isLoading={loading} />
-          </div>
-        ))}
+    <div className="d-flex justify-content-center mt-5">
+      <div className="container text-center m-0 p-0">
+        <div className="d-flex justify-content-center align-items-center">
+          {currentItems.map((card, index) => (
+            <div key={index} className="col-md-3 col-sm-6 mb-4">
+              <Card {...card} isLoading={loading} />
+            </div>
+          ))}
+        </div>
+        <Pagination
+          totalPages={Math.ceil(data.length / itemsPerPage)}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
