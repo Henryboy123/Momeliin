@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom"; // Import NavLink from React Router
 import Dropdown from "../../Shared/Dropdown/Dropdown";
 
 const NavbarLinksGroup = () => {
@@ -6,19 +7,19 @@ const NavbarLinksGroup = () => {
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">
+          <NavLink className="nav-link" to="/">
             Home
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
-            Features
-          </a>
+          <NavLink className="nav-link" to="/shop">
+            Shop
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
-            Pricing
-          </a>
+          <NavLink className="nav-link" to="/custom">
+            Custom
+          </NavLink>
         </li>
         <li className="nav-item dropdown">
           <Dropdown
