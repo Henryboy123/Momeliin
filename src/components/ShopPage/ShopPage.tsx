@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Pagination from "../Shared/Pagination/Pagination";
 import "./ShopPage.scss";
+import FiltersBar from "../Shared/FiltersBar/FiltersBar";
 
 interface DataProps {
   imageUrls: string[];
@@ -132,6 +133,7 @@ const ShopPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState<DataProps[]>(dummyData);
   const [loading, setLoading] = useState(true);
+  const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
   const itemsPerPage = 4;
 
@@ -150,23 +152,49 @@ const ShopPage = () => {
     }, 500);
   };
 
+  const toggleFilters = () => {
+    setIsFiltersVisible(!isFiltersVisible);
+  };
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="d-flex justify-content-center mt-5">
-      <div className="container text-center m-0 p-0">
-        <div className="d-flex justify-content-center align-items-center">
-          {currentItems.map((card, index) => (
-            <div key={index} className="col-md-3 col-sm-6 mb-4">
-              <Card {...card} isLoading={loading} />
+    <div>
+      <FiltersBar onFiltersToggle={toggleFilters} />
+      <div className="d-flex justify-content-center mt-3">
+        <div className="container text-center m-0 p-0">
+          <div className="d-flex justify-content-center align-items-center gap-5">
+            <div
+              className={`filters ${
+                isFiltersVisible ? "on-screen" : "out-of-screen-left"
+              }`}
+            >
+              <nav className="nav flex-column w-200">
+                <h2>Filters</h2>
+                <hr />
+                <a className="nav-link" href="#">
+                  Filter 1
+                </a>
+                <a className="nav-link" href="#">
+                  Filter 2
+                </a>
+                <a className="nav-link disabled" aria-disabled="true">
+                  Filter 3
+                </a>
+              </nav>
             </div>
-          ))}
+            {currentItems.map((card, index) => (
+              <div key={index} className="col-md-3 col-sm-6 mb-4">
+                <Card {...card} isLoading={loading} />
+              </div>
+            ))}
+          </div>
+          <Pagination
+            totalPages={Math.ceil(data.length / itemsPerPage)}
+            onPageChange={handlePageChange}
+          />
         </div>
-        <Pagination
-          totalPages={Math.ceil(data.length / itemsPerPage)}
-          onPageChange={handlePageChange}
-        />
       </div>
     </div>
   );

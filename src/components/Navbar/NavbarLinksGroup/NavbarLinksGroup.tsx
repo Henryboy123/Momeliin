@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom"; // Import NavLink from React Router
 import Dropdown from "../../Shared/Dropdown/Dropdown";
-
+import './NavbarLinksGroup.scss'
 const NavbarLinksGroup = () => {
   return (
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
@@ -21,7 +21,7 @@ const NavbarLinksGroup = () => {
             Custom
           </NavLink>
         </li>
-        <li className="nav-item dropdown">
+        <li className="nav-item dropdown-li">
           <Dropdown
             dropdownHeading={"About Us"}
             dropdownItems={["a", "b", "g"]}

@@ -1,3 +1,22 @@
 .container {
   margin-top: 4rem;
 }
+
+.filters {
+  position: absolute;
+  top: 25vh;
+  height: auto;
+  transition: left 0.3s ease;
+}
+
+.out-of-screen-left {
+  left: -250px;
+}
+
+.on-screen {
+  left: 10px;
+}
+
+.w-200 {
+  width: 200px;
+}

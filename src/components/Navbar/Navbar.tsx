@@ -1,7 +1,7 @@
 import Logo from "./Logo/Logo";
 import NavbarLinksGroup from "./NavbarLinksGroup/NavbarLinksGroup";
-import NavbarSearch from "./NavbarSearch/NavbarSearch";
 import "./Navbar.scss";
+import NavbarUtils from "./NavbarUtils/NavbarUtils";
 
 function Navbar() {
   return (
@@ -22,7 +22,7 @@ function Navbar() {
           </button>
         </div>
         <NavbarLinksGroup />
-        <NavbarSearch />
+        <NavbarUtils />
       </nav>
     </>
   );

@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import ShopPage from './components/ShopPage/ShopPage';
-import './App.scss';
 import HomePage from './components/Home/Home';
+import './App.scss';
 
 function App() {
   return (
