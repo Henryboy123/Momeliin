@@ -7,7 +7,7 @@ const Logo = () => {
       <img
         src="MomelinLogo.png"
         alt="Momelin"
-        style={{ width: "100px", height: "100px" }}
+        style={{ width: "156px", height: "76px" }}
       />
     </Link>
   );

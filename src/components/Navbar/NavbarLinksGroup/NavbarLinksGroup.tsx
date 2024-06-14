@@ -6,22 +6,22 @@ const NavbarLinksGroup = () => {
   return (
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
-        <li className="nav-item">
+        <li className="nav-item btn btn-lg cursor-none">
           <NavLink className="nav-link" to="/">
             Home
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item btn btn-lg">
           <NavLink className="nav-link" to="/shop">
             Shop
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item btn btn-lg">
           <NavLink className="nav-link" to="/custom">
             Custom
           </NavLink>
         </li>
-        <li className="nav-item dropdown-li">
+        <li className="nav-item btn btn-lg dropdown-li">
           <Dropdown
             dropdownHeading={"About Us"}
             dropdownItems={["a", "b", "g"]}
